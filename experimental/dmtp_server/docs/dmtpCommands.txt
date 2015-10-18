@@ -1,0 +1,177 @@
+
+# DMTP ONLY mode (port 26)
+## Prior to STARTTLS
+HELO, EHLO, MODE, RSET, NOOP, HELP, VERB, and QUIT.
+HELO HOST=<host.domain.tld>
+EHLO HOST=<host.domain.tld>
+STARTTLS HOST=<domain.tld> MODE=DMTP		# smtp cmds only
+MODE
+RSET
+NOOP
+NOOP {noop string}
+HELP
+
+## After STARTTLS success (DMTP ONLY)
+HELO, EHLO, MODE, RSET, NOOP, HELP, VERB, and QUIT.
+HELO HOST=<host.domain.tld>
+EHLO HOST=<host.domain.tld>
+MODE
+RSET
+NOOP
+NOOP {noop string}
+HELP
+
+## After reestablishing HELO
+HELO, EHLO, MODE, RSET, NOOP, HELP, VERB, and QUIT.
+HELO HOST=<host.domain.tld>
+EHLO HOST=<host.domain.tld>
+MODE
+RSET
+NOOP
+NOOP {noop string}
+HELP
+
+HIST
+MAIL
+RCPT
+DATA
+SGNT
+VRFY?
+
+
+### DMTP dual mode (port 25)
+### Prior to STARTTLS
+HELO, EHLO, MODE, RSET, NOOP, HELP, VERB, and QUIT.
+HELO HOST=<host.domain.tld>
+ELHO HOST=<host.domain.tld>
+STARTTLS HOST=<domain.tld>					# smtp cmds only
+STARTTLS HOST=<domain.tld> MODE=SMTP		# smtp cmds only
+STARTTLS HOST=<domain.tld> MODE=DMTP		# dmtp cmds only
+MODE
+RSET
+NOOP
+NOOP {noop string}
+HELP
+
+### Ater STARTTLS - SMTP mode
+HELO, EHLO, MODE, RSET, NOOP, HELP, VERB, and QUIT.
+HELO HOST=<host.domain.tld>
+EHLO HOST=<host.domain.tld>
+MODE
+RSET?
+NOOP?
+HELP
+All other SMTP commands
+
+### Ater STARTTLS - DMTP mode
+HELO, EHLO, MODE, RSET, NOOP, HELP, VERB, and QUIT.
+HELO HOST=<host.domain.tld>
+ELHO HOST=<host.domain.tld>
+MODE
+RSET
+NOOP
+NOOP {noop string}
+HELP
+
+HIST
+MAIL
+RCPT
+DATA
+SGNT
+VRFY?
+
+## All command options
+###EHLO, MODE, RSET, NOOP, HELP, VERB, and QUIT.
+214-DATA
+214-EHLO
+214-HELO
+214-HELP
+214-HIST
+214-MAIL
+214-MODE
+214-NOOP
+214-QUIT
+214-RCPT
+214-RSET
+214-SGNT
+214 VRFY {freeform}
+
+COMMAND SUMMARY/STATS
+Commmands: 14
+DATA    
+HELO
+EHLO
+HELP
+HIST
+MAIL
+MODE
+NOOP
+QUIT
+RCPT
+RSET
+SGNT
+STARTTLS
+VRFY
+
+Literals (note key names always have '=' appended to the end of the token)
+HOST=
+USER=
+START=
+STOP=
+FROM=
+FINGERPRINT=
+TO=
+DOMAIN=
+MODE=
+
+Variations: 4 alternative for HIST command
+Special terminals
+= EQUAL				 (may not be used, as all '=' chars are a part of the keyname!
+< L_ANGLE
+> R_ANGLE
+[ L_BRACK
+] R_BRACK
+{ L_SQUIG
+} R_SQUIG
+<LF> RETURN
+
+States: DMTP only: Before TLS, After TLS, After TLS/HELO, RST (maintains HELO hostname), 
+        DMTP/SMTP: 
+
+DATA
+EHLO HOST=<host.domain.tld>
+HELO HOST=<host.domain.tld>
+HELP
+HIST USER=<mailbox@domain.tld>
+HIST USER=<mailbox@domain.tld> START=[fingerprint]
+HIST USER=<mailbox@domain.tld> STOP=[fingerprint]
+HIST USER=<mailbox@domain.tld> START=[fingerprint] STOP=[fingerprint]
+MAIL FROM=<domain.tld> FINGERPRINT=[fingerprint]
+MODE 
+NOOP
+NOOP {noop string}
+QUIT
+RCPT TO=<domain.tld> FINGERPRINT=[fingerprint]
+RSET
+SGNT DOMAIN=<domain.tld>
+SGNT DOMAIN=<domain.tld> FINGERPRINT=[fingerprint]
+SGNT USER=<mailbox@domain.tld>
+SGNT USER=<mailbox@domain.tld> FINGERPRINT=[fingerprint]
+STARTTLS HOST=<domain.tld>
+STARTTLS HOST=<domain.tld> MODE=SMTP
+STARTTLS HOST=<domain.tld> MODE=DMTP
+VRFY DOMAIN=<domain.tld> FINGERPRINT=[fingerprint]
+VRFY USER=<mailbox@domain.tld> FINGERPRINT=[fingerprint]
+
+Types of data fields:
+text mailbox, domain, tld, fingerprint (terminated by '@', '.', '>', ']')
+freeform (everything except '}', blank space not modified
+domain.tld
+host.domain.tld
+mailbox@domain.tld
+fingerprint
+freeform
+
+
+
+

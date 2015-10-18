@@ -1,0 +1,63 @@
+
+Spec: DarkMail, March 2015.pdf
+
+Line based protocol
+Page 83 - all messages consist of ASCII chars with the high order bit cleared.  
+ie: all msgs are between values of 0x01 and 0x7F.
+
+Page 83: read must continue until a line terminator (return char) before evaluating
+the contents of a line (command ver + data).
+
+Page 83: Lines up to 512 octets are supported
+
+Page 83: Line terminator is <LF> or 0x0A
+
+Page 83: Server may consider the combination <CR><LF> the same as a terminator
+
+Therefore: <LF> or 0x0A is always treated as a line terminator.
+           <CR><LF> or 0x0D 0x0A is always treated as a line terminator.
+           <CR> or 0x0D any where else is invalid
+
+Page 84: Cmds are uppercase.
+
+Page 84: Cmd syntx is:
+           COMMAND KEY=<value>
+
+Page : Once a connection has been secured using the STARTTLS command a host ...
+must reset all state information for the connection. This includes discarding the 
+hostname values provided as parameters to the HELO or EHLO commands. 
+
+If a consumer is proceeding with the connection in SMTP mode then it must issue 
+the HELO or EHLO command before attempting to transfer a message.
+
+Page 93: A server must not intentionally choose to unilaterally terminate a DMTP 
+connection under normal operating conditions unless a consumer has exceeded the 
+configured timeout, or is in the process of shutting down. Specifically, servers 
+must not terminate DMTP connections in response to an unknown command, because 
+of syntax violations, or because a command was sent out of order.
+
+Page 94: The following commands must always be available to consumers regardless 
+of the protocol mode or connection state: HELO, EHLO, MODE, RSET, NOOP, HELP, 
+VERB, and QUIT. This includes a connection to a dual protocol host that has not
+been elevated into DMTP mode.
+
+Page 101: Messages that are accepted after the DATA command are QUEUED FOR DELIVERY.
+
+Page 101: DATA command is required to maintain a recent cache of hashed msg content
+in order to respond with an appropriate error code when duplicate msg sends have 
+been detected!
+
+Page 102: Info on how signet's are queried and relayed to the dmtp client after a
+SGNT command has been recv'd.
+
+Page 102: International char support in the domain name could result in a suggested
+list of alternative international chars that exist for the queried signet!!
+
+Q: When in a TLS session, will the RSET command kick us out of the TLS session?
+
+Q: If not, is there a way to cancel the DMTP/TLS session?  Page 103 suggests that 
+if a SIGNET request is temporarily unavailable, the client is to proceed by trying
+to send the message via SMTP.  Does this action happen during the current client/
+server connection (thereby requiring a different TLS connection) or quitting the 
+session, then re-establishing a new connection in order to send via SMTP?
+

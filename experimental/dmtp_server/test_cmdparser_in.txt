@@ -1,0 +1,59 @@
+DATA
+EHLO HOST=<host.domain.tld>
+HELO HOST=<host.domain.tld>
+HELP
+HIST USER=<mailbox@domain.tld>
+HIST USER=<mailbox@domain.tld> START=[fingerprint]
+HIST USER=<mailbox@domain.tld> STOP=[fingerprint]
+HIST USER=<mailbox@domain.tld> START=[fingerprint] STOP=[fingerprint]
+MAIL FROM=<domain.tld> FINGERPRINT=[fingerprint]
+MODE
+NOOP
+NOOP {noop string}
+QUIT
+RCPT TO=<domain.tld> FINGERPRINT=[fingerprint]
+RSET
+SGNT DOMAIN=<domain.tld>
+SGNT DOMAIN=<domain.tld> FINGERPRINT=[fingerprint]
+SGNT USER=<mailbox@domain.tld>
+SGNT USER=<mailbox@domain.tld> FINGERPRINT=[fingerprint]
+STARTTLS HOST=<domain.tld>
+STARTTLS HOST=<domain.tld> MODE=SMTP
+STARTTLS HOST=<domain.tld> MODE=DMTP
+VRFY DOMAIN=<domain.tld> FINGERPRINT=[fingerprint]
+VRFY USER=<mailbox@domain.tld> FINGERPRINT=[fingerprint]
+a
+aa
+aaa
+HOST=<
+HOST=<asdf
+HOST=<asdf>
+ HOST=<
+ HOST=<asdf> HOST=<asdf>
+HELO
+HELO 
+HELO HELO
+HELO DOMAIN=<asdf>
+HELO HOST
+HELO HOST=
+HELO HOST=<
+HELO HOST=<>
+HELO HOST=<a
+HELO HOST=<aa
+HELO HOST=<asdf1234>
+HELO HOST=<asdf1234> 
+HELO HOST=<asdf1234>	
+HELO HOST=<asdf.1234>
+HELO HOST=<asdf1234> HOST=<qwer1234>
+HELO  HOST=<asdf1234>
+HELO	HOST=<asdf1234>
+HELO	 HOST=<asdf1234>
+HIST USER=<mailbox@domain.tld>
+HIST USER=<mailbox@domain.tld> START=[startFingerprint]
+HIST USER=<mailbox@domain.tld> STOP=[stopFingerprint]
+HIST USER=<mailbox@domain.tld> START=[startFingerprint] STOP=[stopFingerprint]
+HIST USER=<mailbox@domain.tld> STOP=[startFingerprint] START=[stopFingerprint]
+NOOP
+NOOP {something interesting this way comes
+NOOP {something interesting this way comes} 
+NOOP {something interesting this way comes}

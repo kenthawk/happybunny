@@ -1,0 +1,13 @@
+cfg.c
+cfg.out
+cfg.h
+lex.c
+lex.h
+*.o
+driver1
+lemon
+*.dSYM
+dmtpd
+stub_client
+test_cmdparser
+

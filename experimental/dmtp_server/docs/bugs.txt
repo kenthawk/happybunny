@@ -1,0 +1,12 @@
+
+Bug #1) Fixed.  Was sprintf missing arg. 
+Repeatable:
+Kents-MacBook-Pro:server kent$ ./c 127.0.0.1
+> RCPT TO=<asdf> FINGERPRINT=[myfingerprint]
+recv: : Undefined error: 0
+Kents-MacBook-Pro:server kent$ 
+Kents-MacBook-Pro:server kent$ 
+Kents-MacBook-Pro:server kent$ ./c 127.0.0.1
+> RCPT TO=<asdf> FINGERPRINT=[myfingerprint]
+recv: : Undefined error: 0
+
