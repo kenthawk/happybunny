@@ -1,2 +1,2 @@
 # HappyBunny
-Experimental code base for implementing/testing our DarkMail effort
+Nothing to see here but us coneys.
